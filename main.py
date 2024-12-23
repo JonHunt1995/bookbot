@@ -1,7 +1,8 @@
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
-    print(count_words(text))
+    #print(count_words(text))
+    print_report(book_path, count_chars(text))
 
 
 def get_book_text(path):
@@ -15,11 +16,17 @@ def count_words(text):
 def count_chars(text):
     lowered_text = text.lower()
     letter_count_map = {}
-    letters = lowered_text.split("")
-    for letter in letters:
-        if letter not in map:
+    for letter in lowered_text:
+        if letter not in letter_count_map and letter.isalpha():
             letter_count_map[letter] = 0
-        else:
+        elif letter.isalpha():
             letter_count_map[letter] += 1
         return letter_count_map
+    
+def print_report(book_path, chars_map):
+    #chars_map.sorted(reverse=True)
+    print(f"--- Begin report of {book_path} ---\n")
+    for key, value in chars_map.items():
+        print(f"The '{key}' character was found {value} times")
+    print("--- End report ---")
 main()
