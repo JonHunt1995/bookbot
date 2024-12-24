@@ -1,8 +1,11 @@
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
-    #print(count_chars(text))
+    print(f"--- Begin report of {book_path} ---\n")
+    print(f"{count_words(text)} words found in document\n")
     print_report(book_path, count_chars(text))
+    print("")
+    print("--- End report ---")
 
 
 def get_book_text(path):
@@ -27,8 +30,8 @@ def count_chars(text):
 def print_report(book_path, chars_map):
     sorted_chars = sorted(chars_map.items(), key=lambda x:x[1], reverse=True)
     sorted_chars_map = dict(sorted_chars)
-    print(f"--- Begin report of {book_path} ---\n")
+
     for key, value in sorted_chars_map.items():
         print(f"The '{key}' character was found {value} times")
-    print("--- End report ---")
+
 main()
